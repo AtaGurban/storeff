@@ -1,0 +1,35 @@
+.admin-nav{
+    background-color: rgb(39, 39, 39);
+    border-radius: 15px;
+    height: 500px;
+}
+
+.admin-nav ul{
+    padding-left: 0;
+}
+
+.admin-nav li{
+    color: #fff;
+    font-size: 1.1rem;
+    list-style-type: none;
+    border: 0;
+    margin: 0 auto;
+}
+
+.admin-inform{
+    background-color: #fff;
+    border-radius: 15px;
+    
+}
+
+table{
+    border-width: 2px;
+    border-color: black;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+table th, tr, td{
+    border-width: 2px;
+}
