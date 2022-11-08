@@ -34,13 +34,13 @@ const SlideProduct = observer(({ title, products }) => {
 
   return (
     <div className="slide-product ">
-      <section className="my-4">
+      <section className="my-4 px-0 py-0">
         <div className="container-fluid ">
           <div
             ref={sliderWrapper}
-            className="slide-product-wrapper bg-white px-2 py-5 px-md-4 py-md-3 rounded position-relative"
+            className="slide-product-wrapper bg-white px-2 py-3 px-md-2 py-md-2 rounded position-relative"
           >
-            <div className="d-flex mb-3 align-items-baseline border-bottom">
+            <div className="d-flex mb-2 align-items-baseline border-bottom">
               <h3 className="h5 fw-700 mb-0">
                 <span className="border-bottom slide-product-title border-width-2 pb-3 d-inline-block">
                   {title}

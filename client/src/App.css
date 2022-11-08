@@ -553,8 +553,8 @@ a:hover {
 .product-slider {
   overflow: hidden;
   padding: 0 15px;
-  width: 95%;
-  margin: 0 auto;
+  /* width: 95%; */
+  /* margin: 0 auto; */
   height: 390px;
 }
 
@@ -574,7 +574,7 @@ a:hover {
 }
 
 .product-card {
-  width: 280px;
+  /* width: 280px; */
   transition: all 0.2s;
   box-shadow: 0px 0px 3px #000;
 }
@@ -1072,6 +1072,10 @@ a:hover {
 
 }
 
+.category-accordion{
+  display: none;
+}
+
 .search-mini{
   display: none;
 }
@@ -1091,8 +1095,22 @@ a:hover {
     display: block;
     z-index: 100;
   }
+  .category-accordion{
+    display: block;
+  }
   #menu__toggle {
     opacity: 0;
+  }
+
+  .logo-title{
+    margin-top: -10px;
+    margin-bottom: 10px;
+  }
+
+
+  .slide-bottom-banner{
+    text-align: center;
+    margin-bottom: 13px;
   }
 
   .modal-auth {
@@ -1217,6 +1235,10 @@ a:hover {
   /* .navbar-input{
     display: none;
   } */
+
+  .carousel-item img{
+    height: 350px;
+  }
   .search-box{
     display: flex;
     width: fit-content;

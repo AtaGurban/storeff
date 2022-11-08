@@ -7,7 +7,7 @@ const CarouselShop = () => {
   const sliders = banner.Banners[0].filter((item) => {
     return item.name === "Slider";
   });
-  console.log(process.env.REACT_APP_API_URL_IMG);
+
   return (
     <Carousel fade className="">
       {sliders.map((item) => (

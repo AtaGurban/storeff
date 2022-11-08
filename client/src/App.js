@@ -21,7 +21,7 @@ const App = observer(() => {
     await fetchTypes().then(data => type.setType(data))
     await fetchCategories().then(data => type.setCategory(data))
     await fetchTitleTypes().then(data => type.setTitleType(data))
-    await fetchSubTypes().then(data => type.setSubType(data))
+    // await fetchSubTypes().then(data => type.setSubType(data))
     await fetchBrands().then(data => brand.setBrand(data))
     await fetchBanners().then(data => banner.setBanner(data))
     // if(user.user){
@@ -30,7 +30,7 @@ const App = observer(() => {
     await fetchDevices('?favourite=true').then(data => device.setDevice(data))
     await fetchDevices('?newProducts=true').then(data => device.setNewProducts(data))
     check().then(data => {
-      user.setUser(data)
+      user.setUser(data) 
       user.setIsAuth(true)
     }).finally(() => setLoading(false))
 

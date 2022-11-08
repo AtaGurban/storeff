@@ -22,7 +22,7 @@ class SubTypeController {
         return res.json(subType)
     }
 
-    async update(req, res) {
+    async update(req, res) { 
         const type = req.body;
         if (!type.titleTypeId) {
             res.status(400).json({ message: "bash kategoriya gorkezilmedik" });

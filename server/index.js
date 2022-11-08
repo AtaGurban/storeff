@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(express.static(path.resolve(__dirname, 'files', 'images')))
 app.use(fileUpload({}))
 app.use('/api', router)
-app.use(ErrorHandlingMiddleware)
+app.use(ErrorHandlingMiddleware) 
 
 const start = async ()=>{
     try {

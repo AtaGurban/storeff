@@ -5,9 +5,9 @@ import ModalNav from "./ModalNav";
 import ModalAuth from "./ModalAuth";
 import { Context } from "..";
 import { observer } from "mobx-react-lite";
-import { fetchOneDevice, fetchSearchDevices } from "../http/deviceAPI";
+import { fetchSearchDevices } from "../http/deviceAPI";
 // import { fetchBasketDevices } from "../http/basketAPI";
-import { toJS } from "mobx";
+// import { toJS } from "mobx";
 import SearchProduct from "./SearchProduct";
 
 const NavBar = observer(() => {
@@ -16,7 +16,7 @@ const NavBar = observer(() => {
   const [modalContent, setModalContent] = useState(true);
   const [modalAuth, setModalAuth] = useState(false);
   let modalNavBool = null;
-  let mouseOut = null;
+  // let mouseOut = null;
   const [searchQuery, setSearchQuery] = useState("");
   const [searchProduct, setSearchProduct] = useState([]);
   const [inputVvod, setInputVvod] = useState(false);
@@ -82,12 +82,12 @@ const NavBar = observer(() => {
     return result[0].id;
   };
 
-  const clickSubTypeCategory = (id) => {
-    let result = categoryNumbers.filter((item) => {
-      return item.subTypeId === id;
-    });
-    return result[0].id;
-  };
+  // const clickSubTypeCategory = (id) => {
+  //   let result = categoryNumbers.filter((item) => {
+  //     return item.subTypeId === id;
+  //   });
+  //   return result[0].id;
+  // };
 
   const showModalAuth = () => {
     setModalAuth(!modalAuth);
@@ -136,42 +136,11 @@ const NavBar = observer(() => {
           <span></span>
         </label>
         <ul className="menu__box">
-        {user.isAuth ? (
-                <ModalAuth modalAuth={modalAuth} setModalAuth={setModalAuth} />
-              ) : (
-                <ModalAuth modalAuth={modalAuth} setModalAuth={setModalAuth} />
-              )}
-
-             
-          {/* <li>
-            <a className="menu__item" href="#">
-              Главная
-            </a>
-          </li>
-          <li>
-            <a className="menu__item" href="#">
-              Проекты
-            </a>
-          </li>
-          <li>
-            <a className="menu__item" href="#">
-              Команда
-            </a>
-          </li>
-          <li>
-            <a className="menu__item" href="#">
-              Блог
-            </a>
-          </li>
-          <li>
-            <a className="menu__item" href="#">
-              Контакты
-            </a>
-          </li> */}
+        <ModalAuth modalAuth={modalAuth} setModalAuth={setModalAuth} />
         </ul>
       </div>
-      <div className="row container navUser d-flex pb-1 pt-4 ">
-        <div className="logo col-5 col-md-2 col-xl-2 text-center">
+      <div className="row container navUser d-flex pb-1 pt-md-4 ">
+        <div className="logo col-12 col-md-2 col-xl-2 text-center logo-title">
           <Link to={SHOP_ROUTE}>AtaGurban</Link>{" "}
         </div>
         <div className="col-md-3 col-xl-2 text-center category-btn">
@@ -287,7 +256,7 @@ const NavBar = observer(() => {
               />
             </div>
           </div> */}
-        <div className="col-xl-5 col-md-4 col-7  search ">
+        <div className="col-xl-5 col-md-4 col-12  search ">
           <input
             type="text"
             className="navbar-input"
