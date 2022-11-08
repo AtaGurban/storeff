@@ -28,12 +28,12 @@ const ModalNav = ({
     return item.id === children
   })
 
-  let subCategoryItems = {}
-  arrayLinks.forEach(item => {
-    subCategoryItems[item.name] = [...type.SubTypes[0].filter((subType)=>{
-      return item.id === subType.titleTypeId
-    })]
-  });
+  // let subCategoryItems = {}
+  // arrayLinks.forEach(item => {
+  //   subCategoryItems[item.name] = [...type.SubTypes[0].filter((subType)=>{
+  //     return item.id === subType.titleTypeId
+  //   })]
+  // });
 
   let categoryNumbers = type.Category[0]
 
@@ -45,13 +45,13 @@ const ModalNav = ({
     return result[0].id
   }
 
-  const clickSubTypeCategory = (id)=>{
+  // const clickSubTypeCategory = (id)=>{
 
-    let result = categoryNumbers.filter((item)=>{
-      return item.subTypeId === id
-    })
-    return result[0].id
-  }
+  //   let result = categoryNumbers.filter((item)=>{
+  //     return item.subTypeId === id
+  //   })
+  //   return result[0].id
+  // }
 
   return (
     <div className="sub-links">
@@ -74,13 +74,13 @@ const ModalNav = ({
                       {item.name}
                     </Link>
                   </li>
-
+{/* 
                   {subCategoryItems[item.name].map((link, index) => (
                         <li key={link.id}>
                           <Link onClick={(e)=>setModalVisible(false)}  to={`product/${clickSubTypeCategory(link.id)}`}>{link.name}</Link>
                         </li>
                       ))
-                    }
+                    } */}
                 </ul>
               )}
             </div>

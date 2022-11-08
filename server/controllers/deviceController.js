@@ -443,70 +443,70 @@ class DeviceController {
           // group: ["device.id"],
         });
       }
-      if (!brandId && subTypeId && !maxPrice) {
-        devices = await Device.findAll({
-          where: { subTypeId },
-          include: [
-            {
-              model: SubDevice,
-              as: "subDevice",
-              include: [{ model: DeviceInfo, as: "info" }],
-            },
-            { model: DeviceImg, as: "deviceImg" },
-            { model: Rating, as: "rating" },
-            { model: DeviceDescription, as: "device_description" },
-            { model: DeviceMoreInfo, as: "more_info" },
-          ],
-          // limit,
-          // offset,
-          // group: ["device.id"],
-        });
-      }
-      if (!brandId && subTypeId && maxPrice) {
-        devices = await Device.findAll({
-          where: { subTypeId },
-          include: [
-            {
-              model: SubDevice,
-              as: "subDevice",
-              include: [{ model: DeviceInfo, as: "info" }],
-            },
-            { model: DeviceImg, as: "deviceImg" },
-            { model: Rating, as: "rating" },
-            { model: DeviceDescription, as: "device_description" },
-            { model: DeviceMoreInfo, as: "more_info" },
-          ],
-          // limit,
-          // offset,
-          // group: ["device.id"],
-        });
-      }
-      if (brandId && subTypeId && maxPrice) {
-        devices = await Device.findAll({
-          where: {
-            subTypeId,
-            brandId,
-            price: {
-              [Op.gte]: minPrice,
-              [Op.lte]: maxPrice,
-            },
-          },
-          include: [
-            {
-              model: SubDevice,
-              as: "subDevice",
-              include: [{ model: DeviceInfo, as: "info" }],
-            },
-            { model: DeviceImg, as: "deviceImg" },
-            { model: Rating, as: "rating" },
-            { model: DeviceDescription, as: "device_description" },
-            { model: DeviceMoreInfo, as: "more_info" },
-          ],
-          // limit,
-          // offset,
-          // group: ["device.id"],
-        });
-      }
+      // if (!brandId && subTypeId && !maxPrice) {
+      //   devices = await Device.findAll({
+      //     where: { subTypeId },
+      //     include: [
+      //       {
+      //         model: SubDevice,
+      //         as: "subDevice",
+      //         include: [{ model: DeviceInfo, as: "info" }],
+      //       },
+      //       { model: DeviceImg, as: "deviceImg" },
+      //       { model: Rating, as: "rating" },
+      //       { model: DeviceDescription, as: "device_description" },
+      //       { model: DeviceMoreInfo, as: "more_info" },
+      //     ],
+      //     // limit,
+      //     // offset,
+      //     // group: ["device.id"],
+      //   });
+      // }
+      // if (!brandId && subTypeId && maxPrice) {
+      //   devices = await Device.findAll({
+      //     where: { subTypeId },
+      //     include: [
+      //       {
+      //         model: SubDevice,
+      //         as: "subDevice",
+      //         include: [{ model: DeviceInfo, as: "info" }],
+      //       },
+      //       { model: DeviceImg, as: "deviceImg" },
+      //       { model: Rating, as: "rating" },
+      //       { model: DeviceDescription, as: "device_description" },
+      //       { model: DeviceMoreInfo, as: "more_info" },
+      //     ],
+      //     // limit,
+      //     // offset,
+      //     // group: ["device.id"],
+      //   });
+      // }
+      // if (brandId && subTypeId && maxPrice) {
+      //   devices = await Device.findAll({
+      //     where: {
+      //       subTypeId,
+      //       brandId,
+      //       price: {
+      //         [Op.gte]: minPrice,
+      //         [Op.lte]: maxPrice,
+      //       },
+      //     },
+      //     include: [
+      //       {
+      //         model: SubDevice,
+      //         as: "subDevice",
+      //         include: [{ model: DeviceInfo, as: "info" }],
+      //       },
+      //       { model: DeviceImg, as: "deviceImg" },
+      //       { model: Rating, as: "rating" },
+      //       { model: DeviceDescription, as: "device_description" },
+      //       { model: DeviceMoreInfo, as: "more_info" },
+      //     ],
+      //     // limit,
+      //     // offset,
+      //     // group: ["device.id"],
+      //   });
+      // }
       let result = devices
       if (sort === "true") {
         result = [...result].sort((a, b) => a.price - b.price)

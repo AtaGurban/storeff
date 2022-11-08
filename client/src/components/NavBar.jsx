@@ -6,7 +6,7 @@ import ModalAuth from "./ModalAuth";
 import { Context } from "..";
 import { observer } from "mobx-react-lite";
 import { fetchOneDevice, fetchSearchDevices } from "../http/deviceAPI";
-import { fetchBasketDevices } from "../http/basketAPI";
+// import { fetchBasketDevices } from "../http/basketAPI";
 import { toJS } from "mobx";
 import SearchProduct from "./SearchProduct";
 
@@ -42,20 +42,22 @@ const NavBar = observer(() => {
     if (searchProduct?.length > 0) setSearchPanelVisible(true);
   }, [searchProduct]);
 
-  useEffect(async () => {
-    if (toJS(user.user)) {
-      let arr = [];
-      await fetchBasketDevices(`?userId=${user.user.id}`).then(
-        (data) => (arr = data)
-      );
-      arr.forEach(async (i) => {
-        await fetchOneDevice(i.deviceId).then((data) => {
-          data.price = i.productPrice;
-          user.setBasketProd(data);
-        });
-      });
-    }
-  }, [toJS(user.isAuth)]);
+  // useEffect(async () => {
+  //   if (toJS(user.user)) {
+  //     let arr = [];
+  //     await fetchBasketDevices(`?userId=${user.user.id}`).then(
+  //       (data) => (arr = data)
+  //     );
+  //     arr.forEach(async (i) => {
+  //       await fetchOneDevice(i.deviceId).then((data) => {
+  //         data.price = i.productPrice;
+  //         user.setBasketProd(data);
+  //       });
+  //     });
+  //   }
+  // }, [toJS(user.isAuth)]);
+
+  // console.log(user);
 
   const showLink = () => {
     if (!modalNavBool) {
@@ -128,11 +130,51 @@ const NavBar = observer(() => {
 
   return (
     <div className="header bg-white">
-      <div className="row container-lg navUser d-flex pb-1 pt-4 ">
-        <div className="logo col-1">
+      <div className="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" />
+        <label className="menu__btn" onClick={showModalAuth} htmlFor="menu__toggle">
+          <span></span>
+        </label>
+        <ul className="menu__box">
+        {user.isAuth ? (
+                <ModalAuth modalAuth={modalAuth} setModalAuth={setModalAuth} />
+              ) : (
+                <ModalAuth modalAuth={modalAuth} setModalAuth={setModalAuth} />
+              )}
+
+             
+          {/* <li>
+            <a className="menu__item" href="#">
+              Главная
+            </a>
+          </li>
+          <li>
+            <a className="menu__item" href="#">
+              Проекты
+            </a>
+          </li>
+          <li>
+            <a className="menu__item" href="#">
+              Команда
+            </a>
+          </li>
+          <li>
+            <a className="menu__item" href="#">
+              Блог
+            </a>
+          </li>
+          <li>
+            <a className="menu__item" href="#">
+              Контакты
+            </a>
+          </li> */}
+        </ul>
+      </div>
+      <div className="row container navUser d-flex pb-1 pt-4 ">
+        <div className="logo col-5 col-md-2 col-xl-2 text-center">
           <Link to={SHOP_ROUTE}>AtaGurban</Link>{" "}
         </div>
-        <div className="col-1 category-btn">
+        <div className="col-md-3 col-xl-2 text-center category-btn">
           <div onClick={() => megaMenuVisibleFunc()} className="btn btn-danger">
             Kategoriýalar
           </div>
@@ -184,7 +226,7 @@ const NavBar = observer(() => {
                             >
                               {i.name}
                             </Link>
-                            <ul className="mega-menu-subtypes">
+                            {/* <ul className="mega-menu-subtypes">
                               {type.SubTypes[0]
                                 .filter(
                                   (subType) => subType.titleTypeId === i.id
@@ -201,7 +243,7 @@ const NavBar = observer(() => {
                                     </Link>
                                   </li>
                                 ))}
-                            </ul>
+                            </ul> */}
                           </div>
                         ))
                     : null}
@@ -210,25 +252,50 @@ const NavBar = observer(() => {
                   {type.Types[0]
                     .filter((i) => i.id === menuChangeNum)
                     .map((j) => (
-                      <img src={`${process.env.REACT_APP_API_URL}:5000/${j.imgOne}`} alt="" />
+                      <img
+                        src={`${process.env.REACT_APP_API_URL}:5000/${j.imgOne}`}
+                        alt=""
+                      />
                     ))}
                   {type.Types[0]
                     .filter((i) => i.id === menuChangeNum)
                     .map((j) => (
-                      <img src={`${process.env.REACT_APP_API_URL}:5000/${j.imgTwo}`} alt="" />
+                      <img
+                        src={`${process.env.REACT_APP_API_URL}:5000/${j.imgTwo}`}
+                        alt=""
+                      />
                     ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="col-xl-6 col-md-4 ps-5 search ">
+        {/* <div className="search-mini col-7">
+            <div className="search-box">
+              <Link             to={`product/query=${searchQuery}`}
+            onClick={() => setSearchPanelVisible(false)}>
+              <button className="btn-search">
+                <i className="fas fa-search"></i>
+              </button>
+              </Link>
+              <input
+                type="text"
+                className="input-search"
+                placeholder="Islän harydyňyzy gözläň"
+                onChange={(e) => searchQueryFunc(e.target.value)}
+                value={searchQuery}
+              />
+            </div>
+          </div> */}
+        <div className="col-xl-5 col-md-4 col-7  search ">
           <input
             type="text"
+            className="navbar-input"
             placeholder="Islän harydyňyzy gözläň"
             onChange={(e) => searchQueryFunc(e.target.value)}
             value={searchQuery}
           />
+
           <Link
             to={`product/query=${searchQuery}`}
             onClick={() => setSearchPanelVisible(false)}
@@ -255,7 +322,7 @@ const NavBar = observer(() => {
             </div>
           </div>
         </div>
-        <div className="nav-links d-flex col-md-4 col-xl-3">
+        <div className="nav-links d-flex col-md-3 col-xl-3">
           <div>
             <div
               onClick={showModalAuth}

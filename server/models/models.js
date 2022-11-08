@@ -49,10 +49,10 @@ const TitleType = sequelize.define('title_type', {
     name: {type: DataTypes.STRING, unique:true, allowNull: false},
 })
 
-const SubType = sequelize.define('sub_type', {
-    id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name: {type: DataTypes.STRING, unique:true, allowNull: false},
-})
+// const SubType = sequelize.define('sub_type', {
+//     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+//     name: {type: DataTypes.STRING, unique:true, allowNull: false},
+// })
 
 const Brand = sequelize.define('brand', {
     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -127,8 +127,8 @@ Category.belongsTo(Type)
 TitleType.hasOne(Category)
 Category.belongsTo(TitleType)
 
-SubType.hasOne(Category)
-Category.belongsTo(SubType)
+// SubType.hasOne(Category)
+// Category.belongsTo(SubType)
 
 Basket.hasMany(BasketDevice)
 BasketDevice.belongsTo(Basket)
@@ -136,14 +136,14 @@ BasketDevice.belongsTo(Basket)
 Type.hasMany(TitleType)
 TitleType.belongsTo(Type)
  
-TitleType.hasMany(SubType)
-SubType.belongsTo(TitleType)
+// TitleType.hasMany(SubType)
+// SubType.belongsTo(TitleType)
 
 Type.hasMany(Device)
 Device.belongsTo(Type)
 
-SubType.hasMany(Device)  
-Device.belongsTo(SubType)
+// SubType.hasMany(Device)  
+// Device.belongsTo(SubType)
 
 
 TitleType.hasMany(Device)
@@ -177,10 +177,10 @@ DeviceInfo.belongsTo(SubDevice)
 Device.hasMany(DeviceMoreInfo, {as: 'more_info'})
 DeviceMoreInfo.belongsTo(Device) 
   
-SubType.belongsToMany(Brand, {through: TypeBrand}) 
-Brand.belongsToMany(SubType, {through: TypeBrand})
+TitleType.belongsToMany(Brand, {through: TypeBrand}) 
+Brand.belongsToMany(TitleType, {through: TypeBrand})
 
 
 
 
-module.exports = {User, Category, DeviceMoreInfo, DeviceMoreInfoId, DeviceDescription, DeviceImg, Basket, SubDevice, Banner, BasketDevice, Device, DeviceInfo, Brand, Type, SubType, TitleType, Rating, TypeBrand}
+module.exports = {User, Category, DeviceMoreInfo, DeviceMoreInfoId, DeviceDescription, DeviceImg, Basket, SubDevice, Banner, BasketDevice, Device, DeviceInfo, Brand, Type,  TitleType, Rating, TypeBrand}
