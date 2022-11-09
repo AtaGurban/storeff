@@ -46,11 +46,11 @@ const ProductItemSearch = observer(({ product }) => {
 
   return (
     <div className="product-item-search mb-3">
-      <div className="product-card-search row position-relative bg-white">
+      <div className="product-card-search justify-content-center row position-relative bg-white flex-wrap">
         <div className="product-image-icon-search"></div>
-        <div className=" product-image-search p-1 col-3">
+        <div className=" product-image-search p-1 col-12 col-md-3">
           <img
-            src={`${process.env.REACT_APP_API_URL}:5000/${product.deviceImg[0].name}`}
+            src={`${process.env.REACT_APP_API_URL}/${product.deviceImg[0].name}`}
           />
         </div>
 
@@ -66,7 +66,7 @@ const ProductItemSearch = observer(({ product }) => {
                 key={item.id}
                 onClick={(e) => setCurrentSubDevice(item)}
                 border={item.id === currentSubDevice.id ? "danger" : "light"}
-                className="col-3 mx-2 p-2"
+                className="col-5 col-md-3 mx-2 p-2"
               >
                 {item?.info.map((i) => (
                   <div key={i.id} className="c-bold">
@@ -76,10 +76,11 @@ const ProductItemSearch = observer(({ product }) => {
               </Card>
             ))}
           </div>
-          <div className="product-rate-price d-flex my-1 mt-3">
-            <div className="product-rate-com mt-5 d-flex">
+          <div className="product-rate-price align-items-center d-flex my-1 mt-3">
+            <div className="product-rate-com mt-5 d-flex col-6">
               <div href="#" className="product-rate-search me-3">
-                <div>
+                <div className="">
+                  {/* <div className=""> */}
                   {product.rating >= 1 ? (
                     <i className="fas fa-star"></i>
                   ) : (
@@ -105,15 +106,16 @@ const ProductItemSearch = observer(({ product }) => {
                   ) : (
                     <i className="far fa-star"></i>
                   )}
-                  <span className="ms-3">
-                    {product?.rating?.length} sapar baha berildi
+                  {/* </div> */}
+                  <span className="ms-2">
+                    ({product?.rating?.length})
                   </span>
                 </div>
               </div>
             </div>
-            <div className="d-flex col-4">
+            <div className="d-flex col-sm-6 col-6">
               <LikeProduct product={product} />
-              <div className="product-price-search">
+              <div className="product-price-search ">
                 <p>
                   {currentSubDevice !== undefined
                     ? currentSubDevice.price
@@ -123,7 +125,7 @@ const ProductItemSearch = observer(({ product }) => {
                 {basketProd ? (
                   <button disabled className="btn btn-danger  p-1">
                     <i className="fas fa-shopping-basket me-2"></i>
-                    Sebetde
+                    <span className="btn-span">Sebetde</span> 
                   </button>
                 ) : (
                   <button
@@ -131,7 +133,7 @@ const ProductItemSearch = observer(({ product }) => {
                     className="btn btn-danger  p-1"
                   >
                     <i className="fas fa-shopping-basket me-2"></i>
-                    Sebede goş
+                    <span className="btn-span">Sebede goş</span> 
                   </button>
                 )}
               </div>

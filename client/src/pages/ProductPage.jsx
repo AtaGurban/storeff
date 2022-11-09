@@ -90,7 +90,7 @@ const ProductPage = observer(() => {
     return (
       <div className="container">
         <div className="product-box p-3 mt-4 row">
-          <div className="product-box-img col-6">
+          <div className="product-box-img col-12 col-md-6">
             {/* <div className="row align-items-start py-3 justify-content-between">
               <div className="text-left col-8">
                 <h1 style={{ fontSize: "1.3rem", fontWeight: "600" }}>
@@ -106,12 +106,34 @@ const ProductPage = observer(() => {
               <div className="mb-1 p-2 big-img">
                 <img
                   width="100%"
-                  src={`${process.env.REACT_APP_API_URL}:5000/${productImg}`}
+                  src={`${process.env.REACT_APP_API_URL}/${productImg}`}
                 />
               </div>
             </div>
+            <div className="row justify-content-center">
+          <div className=" d-flex w-50 justify-content-center">
+            {pageProduct.deviceImg?.map((item, index) => (
+              <div
+                className=" little-image"
+                style={{ height: "50px" }}
+                key={index}
+              >
+                <img
+                  onMouseOver={(e) => littleImageFunc(item.name)}
+                  src={`${process.env.REACT_APP_API_URL}/${item.name}`}
+                  style={
+                    productImg == item.name
+                      ? { borderBottom: "2px solid red" }
+                      : {}
+                  }
+                  className="p-1"
+                />
+              </div>
+            ))}
           </div>
-          <div className="col-6 p-3 bg-white">
+        </div>
+          </div>
+          <div className="col-12 col-md-6 p-3 bg-white">
             <div className="d-flex justify-content-between mb-4">
               <div
                 // style={{ height: "10vh" }}
@@ -125,7 +147,7 @@ const ProductPage = observer(() => {
             <div className="product-page-brand ms-2 d-flex justify-content-between">
               <div className="product-page-brand mb-3">
                 <img
-                  src={`${process.env.REACT_APP_API_URL}:5000/${productBrand?.img}`}
+                  src={`${process.env.REACT_APP_API_URL}/${productBrand?.img}`}
                   alt=""
                 />
               </div>
@@ -184,28 +206,7 @@ const ProductPage = observer(() => {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className=" d-flex w-50 justify-content-center">
-            {pageProduct.deviceImg?.map((item, index) => (
-              <div
-                className=" little-image"
-                style={{ width: "15%", height: "50px" }}
-                key={index}
-              >
-                <img
-                  onMouseOver={(e) => littleImageFunc(item.name)}
-                  src={`${process.env.REACT_APP_API_URL}:5000/${item.name}`}
-                  style={
-                    productImg == item.name
-                      ? { borderBottom: "2px solid red" }
-                      : {}
-                  }
-                  className="p-1"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+
         <div
           style={{ minHeight: "400px" }}
           className="pb-5 d-block text-center"

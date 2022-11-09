@@ -479,7 +479,7 @@ const Category = observer(() => {
           <div className="mt-3 d-block text-center">
             <button
               onClick={() => startFilteer()}
-              className="btn filter-btn w-25 mx-3"
+              className="btn filter-btn mx-3"
             >
               Gözle
             </button>

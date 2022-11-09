@@ -646,7 +646,7 @@ class DeviceController {
           function (err) {
             if (err) {
               console.log(err);
-            }
+            } 
           }
         );
         i.destroy();

@@ -23,7 +23,7 @@ const AdminDeviceTable = () => {
     "Bahasy",
     "Baş kategoriýa",
     "Podkategoriýa",
-    "Kiçi kategoriýa",
+    // "Kiçi kategoriýa",
     "Brend",
     "Reýting",
     "Döredilen wagty",
@@ -95,13 +95,13 @@ const AdminDeviceTable = () => {
                       })[0]?.name
                     }
                   </td>
-                  <td className="p-1">
-                    {
+                  {/* <td className="p-1"> */}
+                    {/* {
                       type.SubTypes[0].filter((itemType) => {
                         return itemType.id === item.subTypeId;
                       })[0]?.name
-                    }
-                  </td>
+                    } */}
+                  {/* </td> */}
                   <td className="p-1">
                     {
                       brand.Brands[0].filter((itemBrand) => {

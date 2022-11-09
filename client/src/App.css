@@ -638,9 +638,9 @@ a:hover {
   top: 25px;
 }
 
-.big-img {
+/* .big-img {
   height: 517px;
-}
+} */
 
 .product-page-brand {
   height: 50px;
@@ -795,6 +795,10 @@ a:hover {
   font-size: 1.6rem;
   font-weight: 600;
   width: 75%;
+}
+
+.product-price-search p{
+  text-align: center;
 }
 
 .product-price-search button,
@@ -1222,6 +1226,21 @@ a:hover {
 .search-box{
   display: none;
 }
+@media (max-width: 1400px){
+  .btn-span{
+    display: none;
+  }
+  .product-price-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 600;
+    width: 75%;
+}
+}
+
 @media  (max-width: 768px) {
   .bottom-link{
     display: none !important;
@@ -1309,5 +1328,6 @@ a:hover {
   text-align: center;
   margin-bottom: 10px;
 }
+
 
 
