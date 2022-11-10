@@ -854,6 +854,15 @@ a:hover {
   text-transform: uppercase;
 }
 
+@media (max-width: 992px) {
+  .product-feelteer{
+    display: none;
+  }
+  .product-sort{
+    width: 50%;
+  }
+}
+
 
 /* Basket */
 .basket {

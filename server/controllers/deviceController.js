@@ -22,7 +22,6 @@ class DeviceController {
       const {
         name,
         price,
-        brandId,
         typeId,
         titleTypeId,
         subTypeId,
@@ -58,7 +57,6 @@ class DeviceController {
       const device = await Device.create({
         name,
         price,
-        brandId,
         typeId,
         titleTypeId,
         subTypeId,
@@ -102,7 +100,6 @@ class DeviceController {
   async getAll(req, res, next) {
     try {
       let {
-        brandId,
         typeId,
         titleTypeId,
         subTypeId,
@@ -122,7 +119,6 @@ class DeviceController {
           filterArr.push({ [sliceKey]: req.query[key] });
         }
       }
-      brandId = brandId?.split("%") || brandId;
       page = page || 1;
       limit = limit || 5;
       // let offset = page * limit - limit;
@@ -175,7 +171,7 @@ class DeviceController {
           deviceInfoDescription = [];
         }
       }
-      if (!brandId && !typeId && !titleTypeId && !subTypeId && !favourite && !query) {
+      if ( !typeId && !titleTypeId && !subTypeId && !favourite && !query) {
         devices = await Device.findAll({
           include: [
             {
@@ -266,7 +262,7 @@ class DeviceController {
         });
       }
 
-      if (!brandId && typeId && maxPrice) {
+      if ( typeId && maxPrice) {
         devices = await Device.findAll({
           where: {
             typeId,
@@ -293,7 +289,7 @@ class DeviceController {
         });
       }
 
-      if (!brandId && typeId && !maxPrice) {
+      if ( typeId && !maxPrice) {
         devices = await Device.findAll({
           where: {
             typeId,
@@ -315,71 +311,71 @@ class DeviceController {
           // group: ["device.id"],
         });
       }
-      if (brandId && typeId && !maxPrice) {
-        devices = await Device.findAll({
-          where: { typeId, brandId },
-          include: [
-            {
-              model: SubDevice,
-              as: "subDevice",
-              include: [{ model: DeviceInfo, as: "info" }],
-            },
-            { model: DeviceImg, as: "deviceImg" },
-            { model: Rating, as: "rating" },
-            { model: DeviceDescription, as: "device_description" },
-            { model: DeviceMoreInfo, as: "more_info" },
-          ],
-          // limit,
-          // offset,
-          // group: ["device.id"],
-        });
-      }
-      if (brandId && typeId && maxPrice) {
-        devices = await Device.findAll({
-          where: {
-            typeId,
-            brandId,
-            price: {
-              [Op.gte]: minPrice,
-              [Op.lte]: maxPrice,
-            },
-          },
-          include: [
-            {
-              model: SubDevice,
-              as: "subDevice",
-              include: [{ model: DeviceInfo, as: "info" }],
-            },
-            { model: DeviceImg, as: "deviceImg" },
-            { model: Rating, as: "rating" },
-            { model: DeviceDescription, as: "device_description" },
-            { model: DeviceMoreInfo, as: "more_info" },
-          ],
-          // limit,
-          // offset,
-          // group: ["device.id"],
-        });
-      }
-      if (brandId && titleTypeId && maxPrice) {
-        devices = await Device.findAll({
-          where: { titleTypeId, brandId },
-          include: [
-            {
-              model: SubDevice,
-              as: "subDevice",
-              include: [{ model: DeviceInfo, as: "info" }],
-            },
-            { model: DeviceImg, as: "deviceImg" },
-            { model: Rating, as: "rating" },
-            { model: DeviceDescription, as: "device_description" },
-            { model: DeviceMoreInfo, as: "more_info" },
-          ],
-          // limit,
-          // offset,
-          // group: ["device.id"],
-        });
-      }
-      if (!brandId && titleTypeId && maxPrice) {
+      // if (brandId && typeId && !maxPrice) {
+      //   devices = await Device.findAll({
+      //     where: { typeId, brandId },
+      //     include: [
+      //       {
+      //         model: SubDevice,
+      //         as: "subDevice",
+      //         include: [{ model: DeviceInfo, as: "info" }],
+      //       },
+      //       { model: DeviceImg, as: "deviceImg" },
+      //       { model: Rating, as: "rating" },
+      //       { model: DeviceDescription, as: "device_description" },
+      //       { model: DeviceMoreInfo, as: "more_info" },
+      //     ],
+      //     // limit,
+      //     // offset,
+      //     // group: ["device.id"],
+      //   });
+      // }
+      // if (brandId && typeId && maxPrice) {
+      //   devices = await Device.findAll({
+      //     where: {
+      //       typeId,
+      //       brandId,
+      //       price: {
+      //         [Op.gte]: minPrice,
+      //         [Op.lte]: maxPrice,
+      //       },
+      //     },
+      //     include: [
+      //       {
+      //         model: SubDevice,
+      //         as: "subDevice",
+      //         include: [{ model: DeviceInfo, as: "info" }],
+      //       },
+      //       { model: DeviceImg, as: "deviceImg" },
+      //       { model: Rating, as: "rating" },
+      //       { model: DeviceDescription, as: "device_description" },
+      //       { model: DeviceMoreInfo, as: "more_info" },
+      //     ],
+      //     // limit,
+      //     // offset,
+      //     // group: ["device.id"],
+      //   });
+      // }
+      // if (brandId && titleTypeId && maxPrice) {
+      //   devices = await Device.findAll({
+      //     where: { titleTypeId, brandId },
+      //     include: [
+      //       {
+      //         model: SubDevice,
+      //         as: "subDevice",
+      //         include: [{ model: DeviceInfo, as: "info" }],
+      //       },
+      //       { model: DeviceImg, as: "deviceImg" },
+      //       { model: Rating, as: "rating" },
+      //       { model: DeviceDescription, as: "device_description" },
+      //       { model: DeviceMoreInfo, as: "more_info" },
+      //     ],
+      //     // limit,
+      //     // offset,
+      //     // group: ["device.id"],
+      //   });
+      // }
+      if ( titleTypeId && maxPrice) {
         devices = await Device.findAll({
           where: { titleTypeId },
           include: [
@@ -398,7 +394,7 @@ class DeviceController {
           // group: ["device.id"],
         });
       }
-      if (!brandId && titleTypeId && !maxPrice) {
+      if ( titleTypeId && !maxPrice) {
         devices = await Device.findAll({
           where: { titleTypeId },
           include: [
@@ -417,32 +413,32 @@ class DeviceController {
           // group: ["device.id"],
         });
       }
-      if (brandId && titleTypeId && maxPrice) {
-        devices = await Device.findAll({
-          where: {
-            titleTypeId,
-            brandId,
-            price: {
-              [Op.gte]: minPrice,
-              [Op.lte]: maxPrice,
-            },
-          },
-          include: [
-            {
-              model: SubDevice,
-              as: "subDevice",
-              include: [{ model: DeviceInfo, as: "info" }],
-            },
-            { model: DeviceImg, as: "deviceImg" },
-            { model: Rating, as: "rating" },
-            { model: DeviceDescription, as: "device_description" },
-            { model: DeviceMoreInfo, as: "more_info" },
-          ],
-          // limit,
-          // offset,
-          // group: ["device.id"],
-        });
-      }
+      // if (brandId && titleTypeId && maxPrice) {
+      //   devices = await Device.findAll({
+      //     where: {
+      //       titleTypeId,
+      //       brandId,
+      //       price: {
+      //         [Op.gte]: minPrice,
+      //         [Op.lte]: maxPrice,
+      //       },
+      //     },
+      //     include: [
+      //       {
+      //         model: SubDevice,
+      //         as: "subDevice",
+      //         include: [{ model: DeviceInfo, as: "info" }],
+      //       },
+      //       { model: DeviceImg, as: "deviceImg" },
+      //       { model: Rating, as: "rating" },
+      //       { model: DeviceDescription, as: "device_description" },
+      //       { model: DeviceMoreInfo, as: "more_info" },
+      //     ],
+      //     // limit,
+      //     // offset,
+      //     // group: ["device.id"],
+      //   });
+      // }
       // if (!brandId && subTypeId && !maxPrice) {
       //   devices = await Device.findAll({
       //     where: { subTypeId },

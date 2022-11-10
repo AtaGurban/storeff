@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {UserStore} from './store/UserStore';
 import { TypeStore } from './store/TypeStore';
-import { BrandStore } from './store/BrandStore';
+// import { BrandStore } from './store/BrandStore';
 import { BannerStore } from './store/BannerStore';
 import { DeviceStore } from './store/DeviceStore';
 
@@ -17,7 +17,7 @@ ReactDOM.render(
   <Context.Provider value={{
     user: new UserStore(),
     type: new TypeStore(),
-    brand: new BrandStore(),
+    // brand: new BrandStore(),
     banner: new BannerStore(),
     device: new DeviceStore()
   }}>

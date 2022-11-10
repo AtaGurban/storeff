@@ -18,13 +18,13 @@ const Category = observer(() => {
   const [reqValue, setReqValue] = useState("");
   const [page, setPage] = useState(1);
   const [priceFilteer, setPriceFilteer] = useState([0, 10000000]);
-  const [filteerBrand, setFilteerBrand] = useState([]);
+  // const [filteerBrand, setFilteerBrand] = useState([]);
   const [deviceInfoState, setDeviceInfoState] = useState([]);
   const [deviceInfoTitle, setDeviceInfoTitle] = useState([]);
   const [deviceInfoDescription, setDeviceInfoDescription] = useState({});
   const [productSort, setProductSort] = useState(true);
   const [applyFilteerState, setApplyFilteerState] = useState("");
-  const { brand, type } = useContext(Context);
+  const {  type } = useContext(Context);
   // const lastElement = useRef();
   // const observer = useRef();
   const [applyFilteerBtn, setApplyFilteerBtn] = useState(
@@ -128,9 +128,9 @@ const Category = observer(() => {
     await startFilteer();
   }, [page]);
 
-  useEffect(async () => {
-    startFilteer();
-  }, [filteerBrand]);
+  // useEffect(async () => {
+  //   startFilteer();
+  // }, [filteerBrand]);
 
   // useEffect(() => {
   //   if (queryProduct?.length > 0) {
@@ -213,11 +213,11 @@ const Category = observer(() => {
   };
 
   const startFilteer = async () => {
-    if (deviceInfoState.length > 0 || filteerBrand.length > 0 || ((priceFilteer[0] != 0) || (priceFilteer[1] < 10000000))) {
-      let queryRequest =
-        filteerBrand.length === 0
-          ? `?${reqTitle}=${reqValue}&`
-          : `?${reqTitle}=${reqValue}&brandId=${filteerBrand.join("%")}&`;
+    if (deviceInfoState.length > 0 || ((priceFilteer[0] != 0) || (priceFilteer[1] < 10000000))) {
+      let queryRequest = `?${reqTitle}=${reqValue}&`
+        // filteerBrand.length === 0
+        //   ? `?${reqTitle}=${reqValue}&`
+        //   : `?${reqTitle}=${reqValue}&brandId=${filteerBrand.join("%")}&`;
       let infoFilteer = {};
       deviceInfoState.map((i) => {
         infoFilteer[i.title] = [];
@@ -313,17 +313,17 @@ const Category = observer(() => {
   //   }
   // }, [ productCountPage]);
 
-  const pushArrayBrand = (value, id) => {
-    value.classList.toggle("active-check");
-    let boolIndex = value.classList.contains("active-check");
-    if (!boolIndex) {
-      setFilteerBrand(() => {
-        return filteerBrand.filter((item) => {
-          return item !== id;
-        });
-      });
-    } else setFilteerBrand([...filteerBrand, id]);
-  };
+  // const pushArrayBrand = (value, id) => {
+  //   value.classList.toggle("active-check");
+  //   let boolIndex = value.classList.contains("active-check");
+  //   if (!boolIndex) {
+  //     setFilteerBrand(() => {
+  //       return filteerBrand.filter((item) => {
+  //         return item !== id;
+  //       });
+  //     });
+  //   } else setFilteerBrand([...filteerBrand, id]);
+  // };
 
   if (loading) {
     return (
@@ -341,8 +341,8 @@ const Category = observer(() => {
   }
 
   return (
-    <div className="container row mx-auto mt-5">
-      <div className="col-3  px-3 py-3 mt-5 product-feelteer">
+    <div className="container-fluid container-lg mx-lg-auto row mt-5">
+      <div className="col-lg-3  px-3 py-3 mt-5 product-feelteer">
         {/* <h4>Filtirle</h4> */}
         <div className="position-relative">
           <Accordion defaultActiveKey={["0"]} alwaysOpen>
@@ -496,7 +496,7 @@ const Category = observer(() => {
           </div>
         </div>
       </div>
-      <div className="col-9">
+      <div className="col-lg-9 col-12">
         {/* <div className="d-block" style={{textAlign: 'center'}}>
         <input
           value={searchQuery}
@@ -506,7 +506,7 @@ const Category = observer(() => {
           type="text"
           placeholder="Gozleg..."
         /></div>   */}
-        <div className="row">
+        {/* <div className="row">
           {brand.Brands[0].map((brand) => (
             <Card
               style={{ height: 50 }}
@@ -526,7 +526,7 @@ const Category = observer(() => {
           ))}
         </div>
 
-        <hr />
+        <hr /> */}
         <div className="product-sort mb-3">
           <select
             onChange={(e) => {

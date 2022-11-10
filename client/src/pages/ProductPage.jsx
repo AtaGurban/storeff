@@ -13,9 +13,9 @@ const ProductPage = observer(() => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
   const [currentSubDevice, setCurrentSubDevice] = useState({});
-  const { brand, user } = useContext(Context);
+  const { user } = useContext(Context);
   const [pageProduct, setPageProduct] = useState({});
-  const [productBrand, setProductBrand] = useState({});
+  // const [productBrand, setProductBrand] = useState({});
   const [productImg, setProductImg] = useState("");
   const [tabDescription, setTabDescription] = useState("");
   const [tabMoreInfo, setTabMoreInfo] = useState([]);
@@ -63,11 +63,6 @@ const ProductPage = observer(() => {
         setTabDescription(data.device_description[0].big);
         setTabMoreInfo(data.more_info);
         setProductImg(data.deviceImg[0].name);
-        setProductBrand(
-          brand.Brands[0].filter((i) => {
-            return i.id === data.brandId;
-          })[0]
-        );
         setCurrentSubDevice(data.subDevice[0]);
       })
       .finally(() => setLoading(false));
@@ -146,10 +141,10 @@ const ProductPage = observer(() => {
             </div>
             <div className="product-page-brand ms-2 d-flex justify-content-between">
               <div className="product-page-brand mb-3">
-                <img
+                {/* <img
                   src={`${process.env.REACT_APP_API_URL}/${productBrand?.img}`}
                   alt=""
-                />
+                /> */}
               </div>
               <div className="product-page-price-basket">
                 <div className="product-page-price">

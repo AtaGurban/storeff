@@ -54,11 +54,11 @@ const TitleType = sequelize.define('title_type', {
 //     name: {type: DataTypes.STRING, unique:true, allowNull: false},
 // })
 
-const Brand = sequelize.define('brand', {
-    id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    name: {type:DataTypes.STRING, unique:true, allowNull: false},
-    img: {type: DataTypes.STRING, unique:true, allowNull: false},  
-})
+// const Brand = sequelize.define('brand', {
+//     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+//     name: {type:DataTypes.STRING, unique:true, allowNull: false},
+//     img: {type: DataTypes.STRING, unique:true, allowNull: false},  
+// })
 
 const Banner = sequelize.define('banner', {
     id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -105,9 +105,7 @@ const DeviceMoreInfoId = sequelize.define('device_more_info_id', {
     name: {type:DataTypes.STRING, allowNull:false}
 })
 
-const TypeBrand = sequelize.define('type_brand', {
-    id: {type:DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-})
+
 
 User.hasOne(Basket)
 Basket.belongsTo(User)
@@ -150,9 +148,6 @@ TitleType.hasMany(Device)
 Device.belongsTo(TitleType)
 
 
-Brand.hasMany(Device)
-Device.belongsTo(Brand)
-
 Device.hasMany(Rating, {as: 'rating'})
 Rating.belongsTo(Device)
 
@@ -177,10 +172,8 @@ DeviceInfo.belongsTo(SubDevice)
 Device.hasMany(DeviceMoreInfo, {as: 'more_info'})
 DeviceMoreInfo.belongsTo(Device) 
   
-TitleType.belongsToMany(Brand, {through: TypeBrand}) 
-Brand.belongsToMany(TitleType, {through: TypeBrand})
 
 
 
 
-module.exports = {User, Category, DeviceMoreInfo, DeviceMoreInfoId, DeviceDescription, DeviceImg, Basket, SubDevice, Banner, BasketDevice, Device, DeviceInfo, Brand, Type,  TitleType, Rating, TypeBrand}
+module.exports = {User, Category, DeviceMoreInfo, DeviceMoreInfoId, DeviceDescription, DeviceImg, Basket, SubDevice, Banner, BasketDevice, Device, DeviceInfo, Type,  TitleType, Rating}

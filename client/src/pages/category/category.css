@@ -21,3 +21,12 @@
     width: 30%;
     margin-left: auto
 }
+
+@media (max-width: 992px) {
+    .product-feelteer{
+      display: none;
+    }
+    .product-sort{
+      width: 50%;
+    }
+  }

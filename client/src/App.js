@@ -8,7 +8,7 @@ import { Context } from ".";
 import { check } from "./http/userAPI";
 import { Spinner } from "react-bootstrap";
 import { fetchTypes, fetchSubTypes, fetchTitleTypes, fetchCategories } from "./http/typeAPI";
-import { fetchBrands } from "./http/brandAPI";
+// import { fetchBrands } from "./http/brandAPI";
 import { fetchBanners } from "./http/bannerAPI";
 import { fetchDevices } from "./http/deviceAPI";
 import Footer from "./components/Footer";
@@ -22,7 +22,7 @@ const App = observer(() => {
     await fetchCategories().then(data => type.setCategory(data))
     await fetchTitleTypes().then(data => type.setTitleType(data))
     // await fetchSubTypes().then(data => type.setSubType(data))
-    await fetchBrands().then(data => brand.setBrand(data))
+    // await fetchBrands().then(data => brand.setBrand(data))
     await fetchBanners().then(data => banner.setBanner(data))
     // if(user.user){
     //   await fetchBasketDevices(user.user.id).then(data => user.setBasketProd(data))
