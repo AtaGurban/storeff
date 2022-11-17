@@ -11,7 +11,7 @@ const click = ()=>{
         <div onClick={()=>click()}>
             <Link to={`product/detail/${id}`} className="wrapper-search-product d-flex p-2">
                 <div className="search-product-img">
-                    <img src={`${process.env.REACT_APP_API_URL}:5000/${img}`} alt="" />
+                    <img src={`${process.env.REACT_APP_API_URL}${img}`} alt="" />
                 </div>
                 <div className="ms-3 search-product-name">{name}</div>
             </Link>

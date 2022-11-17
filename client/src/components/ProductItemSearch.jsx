@@ -50,7 +50,7 @@ const ProductItemSearch = observer(({ product }) => {
         <div className="product-image-icon-search"></div>
         <div className=" product-image-search p-1 col-12 col-md-3">
           <img
-            src={`${process.env.REACT_APP_API_URL}/${product.deviceImg[0].name}`}
+            src={`${process.env.REACT_APP_API_URL}${product.deviceImg[0].name}`}
           />
         </div>
 

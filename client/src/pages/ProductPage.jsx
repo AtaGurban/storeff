@@ -101,7 +101,7 @@ const ProductPage = observer(() => {
               <div className="mb-1 p-2 big-img">
                 <img
                   width="100%"
-                  src={`${process.env.REACT_APP_API_URL}/${productImg}`}
+                  src={`${process.env.REACT_APP_API_URL}${productImg}`}
                 />
               </div>
             </div>

@@ -40,7 +40,7 @@ const ProductItemBasket = observer(({ product, pushSumm }) => {
       <div className="product-basket-content row">
         <div className="col-3 text-center">
           <img
-            src={`${process.env.REACT_APP_API_URL}:5000/${product.deviceImg[0].name}`}
+            src={`${process.env.REACT_APP_API_URL}${product.deviceImg[0].name}`}
             alt=""
             className="product-basket-img"
           />
