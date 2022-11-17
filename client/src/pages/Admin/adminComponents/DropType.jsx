@@ -6,16 +6,16 @@ const DropType = ({ currentType, currentEditDevice }) => {
     const { type } = useContext(Context);
     const [dropType, setDropType] = useState({})
     const [dropTitleType, setDropTitleType] = useState({})
-    const [dropSubType, setDropSubType] = useState({})
+    // const [dropSubType, setDropSubType] = useState({})
     const [currentdropTitleTypes, setCurrentDropTitleTypes] = useState([])
-    const [currentdropSubTypes, setCurrentDropSubTypes] = useState([])
+    // const [currentdropSubTypes, setCurrentDropSubTypes] = useState([])
 
 
     useEffect(() => {
         if (currentEditDevice) {
             setDropType(() => type.Types[0].filter(i => i.id === currentEditDevice.typeId)[0])
             setDropTitleType(() => type.TitleTypes[0].filter(i => i.id === currentEditDevice.titleTypeId)[0])
-            setDropSubType(() => type.SubTypes[0].filter(i => i.id === currentEditDevice.subTypeId)[0])
+            // setDropSubType(() => type.SubTypes[0].filter(i => i.id === currentEditDevice.subTypeId)[0])
         }
     }, [])
 
@@ -28,21 +28,21 @@ const DropType = ({ currentType, currentEditDevice }) => {
 
     }, [dropType])
 
-    useEffect(() => {
-        let result = type.SubTypes[0].filter((item) => {
-            return item.titleTypeId === dropTitleType.id
-        })
-        setCurrentDropSubTypes(result)
+    // useEffect(() => {
+    //     let result = type.SubTypes[0].filter((item) => {
+    //         return item.titleTypeId === dropTitleType.id
+    //     })
+    //     setCurrentDropSubTypes(result)
 
-    }, [dropTitleType])
+    // }, [dropTitleType])
 
     useEffect(() => {
         let obj = {}
         obj.typeId = dropType.id
         obj.titleTypeId = dropTitleType.id
-        obj.subTypeId = dropSubType.id
+        // obj.subTypeId = dropSubType.id
         currentType(obj)
-    }, [dropSubType])
+    }, [dropTitleType])
     return (
         <div>
             <div style={{ flexDirection: 'column', alignItems: 'center' }} className="dropdowns d-flex">
@@ -70,7 +70,7 @@ const DropType = ({ currentType, currentEditDevice }) => {
                         }
                     </Dropdown.Menu>
                 </Dropdown>
-                <Dropdown className='mb-3'>
+                {/* <Dropdown className='mb-3'>
                     <Dropdown.Toggle disabled={currentdropSubTypes.length === 0}>
                         {dropSubType.name || 'Kiçi kategoriýany saýlaň'}
                     </Dropdown.Toggle>
@@ -81,7 +81,7 @@ const DropType = ({ currentType, currentEditDevice }) => {
                             )
                         }
                     </Dropdown.Menu>
-                </Dropdown>
+                </Dropdown> */}
             </div>
         </div>
     )
