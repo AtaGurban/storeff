@@ -5,18 +5,18 @@ import DropType from "./DropType";
 import { Context } from "../../..";
 
 const ModalEditDevice = ({ currentEditDevice, show, onHide }) => {
-  const [boolBtn, setBoolBtn] = useState(true);
-  const { brand } = useContext(Context);
+  // const [boolBtn, setBoolBtn] = useState(true);
+  // const { brand } = useContext(Context);
   const [bigDesc, setBigDesc] = useState("");
   const [littleDesc, setLittleDesc] = useState("");
   const [DeviceMoreInfo, setDeviceMoreInfo] = useState([]);
   const [device, setDevice] = useState("");
   const [price, setPrice] = useState(null);
   const [img, setImg] = useState(null);
-  const [dropBrand, setDropBrand] = useState({});
+  // const [dropBrand, setDropBrand] = useState({});
   const [typeId, setTypeId] = useState(null);
   const [titleTypeId, setTitleTypeId] = useState(null);
-  const [subTypeId, setSubTypeId] = useState(null);
+  // const [subTypeId, setSubTypeId] = useState(null);
 
   useEffect(() => {
     if (currentEditDevice.name) {
@@ -25,10 +25,10 @@ const ModalEditDevice = ({ currentEditDevice, show, onHide }) => {
       setImg(currentEditDevice.deviceImg[0].name);
       setBigDesc(currentEditDevice.device_description[0].big);
       setLittleDesc(currentEditDevice.device_description[0].little);
-      setDropBrand(
-        () =>
-          brand.Brands[0].filter((i) => i.id === currentEditDevice.brandId)[0]
-      );
+      // setDropBrand(
+      //   () =>
+      //     brand.Brands[0].filter((i) => i.id === currentEditDevice.brandId)[0]
+      // );
       setDeviceMoreInfo(currentEditDevice.more_info)
     }
   }, [currentEditDevice]);
@@ -39,10 +39,10 @@ const ModalEditDevice = ({ currentEditDevice, show, onHide }) => {
   const currentType = (obj) => {
     setTypeId(obj.typeId);
     setTitleTypeId(obj.titleTypeId);
-    setSubTypeId(obj.subTypeId);
-    if (subTypeId) {
-      setBoolBtn(false);
-    }
+    // setSubTypeId(obj.subTypeId);
+    // if (subTypeId) {
+    //   setBoolBtn(false);
+    // }
   };
 
   const addMoreInfo = () => {
@@ -72,8 +72,8 @@ const ModalEditDevice = ({ currentEditDevice, show, onHide }) => {
     formData.append("img", img);
     formData.append("typeId", typeId);
     formData.append("titleTypeId", titleTypeId);
-    formData.append("subTypeId", subTypeId);
-    formData.append("brandId", dropBrand.id);
+    // formData.append("subTypeId", subTypeId);
+    // formData.append("brandId", dropBrand.id);
     updateDevice(formData).then((data) => {
       onHide();
       window.location.reload();
@@ -120,7 +120,7 @@ const ModalEditDevice = ({ currentEditDevice, show, onHide }) => {
                   currentType={currentType}
                 />
               </div>
-              <div className="col-6">
+              {/* <div className="col-6">
                 <h4 className="text-center mb-2">Harydyň brendini görkeziň</h4>
                 <div
                   style={{ flexDirection: "column", alignItems: "center" }}
@@ -142,7 +142,7 @@ const ModalEditDevice = ({ currentEditDevice, show, onHide }) => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
-              </div>
+              </div> */}
             </div>
             <hr />
             <div className="row">

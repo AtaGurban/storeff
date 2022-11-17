@@ -5,8 +5,8 @@ import DropType from "./DropType";
 import { Context } from "../../..";
 
 const ModalAddDevice = ({ show, onHide }) => {
-  const [boolBtn, setBoolBtn] = useState(true);
-  const { brand } = useContext(Context);
+  // const [boolBtn, setBoolBtn] = useState(true);
+  // const {  } = useContext(Context);
   const [bigDesc, setBigDesc] = useState("");
   const [DeviceMoreInfo, setDeviceMoreInfo] = useState([]);
   const [littleDesc, setLittleDesc] = useState("");
@@ -14,10 +14,10 @@ const ModalAddDevice = ({ show, onHide }) => {
   const [favouriteDevice, setfavouriteDevice] = useState(false);
   const [price, setPrice] = useState(null);
   const [img, setImg] = useState([]);
-  const [dropBrand, setDropBrand] = useState({});
+  // const [dropBrand, setDropBrand] = useState({});
   const [typeId, setTypeId] = useState(null);
   const [titleTypeId, setTitleTypeId] = useState(null);
-  const [subTypeId, setSubTypeId] = useState(null);
+  // const [subTypeId, setSubTypeId] = useState(null);
 
   const addImg = () => {
     setImg([...img, { file: "", number: Date.now() }]);
@@ -29,10 +29,10 @@ const ModalAddDevice = ({ show, onHide }) => {
   const currentType = (obj) => {
     setTypeId(obj.typeId);
     setTitleTypeId(obj.titleTypeId);
-    setSubTypeId(obj.subTypeId);
-    if (subTypeId) {
-      setBoolBtn(false);
-    }
+    // setSubTypeId(obj.subTypeId);
+    // if (subTypeId) {
+    //   setBoolBtn(false);
+    // }
   };
   const addMoreInfo = () => {
     setDeviceMoreInfo([
@@ -63,9 +63,9 @@ const ModalAddDevice = ({ show, onHide }) => {
     }
     formData.append("typeId", typeId);
     formData.append("titleTypeId", titleTypeId);
-    formData.append("subTypeId", subTypeId);
+    // formData.append("subTypeId", subTypeId);
     formData.append("DeviceMoreInf", JSON.stringify(DeviceMoreInfo));
-    formData.append("brandId", dropBrand.id);
+    // formData.append("brandId", dropBrand.id);
     formData.append("favourite", favouriteDevice);
     formData.append("big", bigDesc);
     formData.append("little", littleDesc);
@@ -126,7 +126,7 @@ const ModalAddDevice = ({ show, onHide }) => {
                 </h4>
                 <DropType currentType={currentType} />
               </div>
-              <div className="col-6">
+              {/* <div className="col-6">
                 <h4 className="text-center mb-2">Harydyň brendini görkeziň</h4>
                 <div
                   style={{ flexDirection: "column", alignItems: "center" }}
@@ -148,7 +148,7 @@ const ModalAddDevice = ({ show, onHide }) => {
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
-              </div>
+              </div> */}
             </div>
             <hr />
             <div className="row">
