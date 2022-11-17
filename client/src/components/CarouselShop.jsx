@@ -15,7 +15,7 @@ const CarouselShop = () => {
           <img
             // style={{ height: 400, }}
             className="d-block w-100"
-            src={`${process.env.REACT_APP_API_URL}/${item.img}`} 
+            src={`${process.env.REACT_APP_API_URL}${item.img}`} 
             alt={item.name}
           />
         </Carousel.Item>

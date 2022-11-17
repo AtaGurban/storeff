@@ -10,7 +10,7 @@ const AdminDeviceTable = () => {
   const [devices, setDevices] = useState([]);
   const [modalEditDeviceVisible, setModalEditDeviceVisible] = useState(false);
   const [currentEditDevice, setCurrentEditDevice] = useState({});
-  const { type, brand } = useContext(Context);
+  const { type } = useContext(Context);
   let queryString = `?page=${paginationActive}`;
 
   useEffect(async () => {
@@ -24,7 +24,7 @@ const AdminDeviceTable = () => {
     "Baş kategoriýa",
     "Podkategoriýa",
     // "Kiçi kategoriýa",
-    "Brend",
+    // "Brend",
     "Reýting",
     "Döredilen wagty",
     "Üýtgedilen wagty",
@@ -102,13 +102,13 @@ const AdminDeviceTable = () => {
                       })[0]?.name
                     } */}
                   {/* </td> */}
-                  <td className="p-1">
+                  {/* <td className="p-1">
                     {
                       brand.Brands[0].filter((itemBrand) => {
                         return itemBrand.id === item.brandId;
                       })[0]?.name
                     }
-                  </td>
+                  </td> */}
                   <td className="p-1">{item.rating}</td>
                   <td className="p-1">{item.createdAt}</td>
                   <td className="p-1">{item.updatedAt}</td>
