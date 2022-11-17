@@ -86,10 +86,10 @@ const ModalNav = ({
             </div>
             <div className="modal-nav-banner d-flex .flex-column  col-2">
               <div className="modal-nav-banner-img p-2">
-                <img className="mb-2" alt="" src={`${process.env.REACT_APP_API_URL}/${currentType[0]?.imgOne}`} />
+                <img className="mb-2" alt="" src={`${process.env.REACT_APP_API_URL}${currentType[0]?.imgOne}`} />
               </div>
               <div className="modal-nav-banner-img p-2">
-                <img className="mt-2" alt="" src={`${process.env.REACT_APP_API_URL}/${currentType[0]?.imgTwo}`} />
+                <img className="mt-2" alt="" src={`${process.env.REACT_APP_API_URL}${currentType[0]?.imgTwo}`} />
               </div>
               
               
