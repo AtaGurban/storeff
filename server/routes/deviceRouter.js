@@ -14,4 +14,4 @@ router.delete('/:id', checkRole('ADMIN'), deviceController.delete)
 
 
 
-module.exports = router
+module.exports = router 

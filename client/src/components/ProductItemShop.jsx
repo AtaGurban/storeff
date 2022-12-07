@@ -50,7 +50,7 @@ const ProductItemShop = observer(({ product }) => {
             <Link to={`/product/detail/${product.id}`}>
               <Image
                 className=""
-                src={`${process.env.REACT_APP_API_URL}${product.deviceImg[0].name}`}
+                src={`${process.env.REACT_APP_API_URL}${product.deviceImg[0]?.name}`}
               />
             </Link>
             <div className="product-image-icon">

@@ -7,12 +7,12 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from ".";
 import { check } from "./http/userAPI";
 import { Spinner } from "react-bootstrap";
-import { fetchTypes, fetchSubTypes, fetchTitleTypes, fetchCategories } from "./http/typeAPI";
+import { fetchTypes, fetchTitleTypes, fetchCategories } from "./http/typeAPI";
 // import { fetchBrands } from "./http/brandAPI";
 import { fetchBanners } from "./http/bannerAPI";
 import { fetchDevices } from "./http/deviceAPI";
 import Footer from "./components/Footer";
-
+ 
 
 const App = observer(() => {
   const { user, type, brand, banner, device } = useContext(Context)

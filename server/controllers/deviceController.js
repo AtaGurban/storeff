@@ -22,11 +22,80 @@ class DeviceController {
       const excelFile = req.files.excel
       await excelFile.mv(path.resolve(__dirname, "..", "files", "excel", excelFile.name))
       const result = excelToJson({
-        sourceFile: path.resolve(__dirname, "..", "files", "excel", excelFile.name) // fs.readFileSync return a Buffer
+        sourceFile: path.resolve(__dirname, "..", "files", "excel", excelFile.name),
+      //   sheets:[{
+      //     name: 'harytlar',
+      //     columnToKey: {
+      //       A: 'name',
+      //       B: 'price',
+      //       C: 'typeId',
+      //       D: 'titleTypeId',
+      //       E: 'favourite',
+      //       F: 'smallDesc',
+      //       G: 'bigDesc',
+      //       H: 'code',
+      //       I: 'size',
+      //       J: 'color'
+      //     }
+      // }]
     });
+    console.log(result);
+      for (const key in result) {
+        if (Object.hasOwnProperty.call(result, key)) {
+          const products = result[key];
+          for (let i = 1; i < products.length; i++) {
+            const element = products[i];
+            let DeviceMoreInf = [{title: 'Ölçegi', description: element['I']}, {title: 'Reňki', description: element['J']}]
+            const DeviceMoreInfoIdData = await DeviceMoreInfoId.findAll();
+            (DeviceMoreInf).map(async (i) => {
+              try {
+                DeviceMoreInfoIdData.filter(
+                  (y) =>
+                    y.dataValues.name.toLowerCase().trim() ===
+                    i.title.toLowerCase().trim()
+                ).length === 0
+                  ? await DeviceMoreInfoId.create({ name: i.title.trim() })
+                  : null;
+                DeviceMoreInfoIdData.filter(
+                  (y) => 
+                    y.dataValues.name.toLowerCase().trim() ===
+                    i.description.toLowerCase().trim()
+                ).length === 0
+                  ? await DeviceMoreInfoId.create({ name: i.description.trim() })
+                  : null;
+              } catch (error) {
+                console.log(error);
+              }
+            });
+            const device = await Device.create({
+              name: element['A'],
+              price : (+element['B']),
+              typeId : (+element['C']),
+              titleTypeId : (+element['D']),
+              favourite : ((element['E'] === 'hawa' ? true : false)),
+              code : (+element['H'])
+            });
+            await DeviceDescription.create({
+              big : element['G'],
+              little : element['F'],
+              deviceId: device.id, 
+            })
+            if (DeviceMoreInf) { 
+              DeviceMoreInf = (DeviceMoreInf);
+              DeviceMoreInf.map((i) => {
+                DeviceMoreInfo.create({
+                  title: i.title,
+                  description: i.description,
+                  deviceId: device.id,
+                });
+              });
+            }
+          }
+        }
+    }
 
 
-    fs.unlink(
+    fs.unlink( 
       path.resolve(__dirname, "..", "files", "excel", excelFile.name),
       function (err) {
         if (err) {
@@ -52,7 +121,7 @@ class DeviceController {
       } = req.body;
       let { DeviceMoreInf } = req.body;
       const img = req.files;
-
+      console.log(DeviceMoreInf);
       const DeviceMoreInfoIdData = await DeviceMoreInfoId.findAll();
       JSON.parse(DeviceMoreInf).map(async (i) => {
         try {
@@ -80,7 +149,6 @@ class DeviceController {
         price,
         typeId,
         titleTypeId,
-        subTypeId,
         favourite,
         code
       });
