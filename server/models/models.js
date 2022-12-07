@@ -31,6 +31,7 @@ const Device = sequelize.define('device', {
     name: {type: DataTypes.TEXT, unique:true, allowNull: false},
     favourite: {type: DataTypes.BOOLEAN, defaultValue: false},  
     price: {type: DataTypes.INTEGER, allowNull: false},
+    code: {type: DataTypes.BIGINT, allowNull: false},
 })
 
 const Type = sequelize.define('type', {

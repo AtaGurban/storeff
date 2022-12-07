@@ -1,8 +1,8 @@
 const uuid = require("uuid");
 const path = require("path");
 const { Op } = require("sequelize");
-const gm = require("gm");
 const fs = require("fs");
+const excelToJson = require('convert-excel-to-json');
 const {
   Device,
   DeviceInfo,
@@ -17,6 +17,27 @@ const {
 const ApiError = require("../error/ApiError");
 
 class DeviceController {
+  async createExcel(req, res, next) {
+    try {
+      const excelFile = req.files.excel
+      await excelFile.mv(path.resolve(__dirname, "..", "files", "excel", excelFile.name))
+      const result = excelToJson({
+        sourceFile: path.resolve(__dirname, "..", "files", "excel", excelFile.name) // fs.readFileSync return a Buffer
+    });
+
+
+    fs.unlink(
+      path.resolve(__dirname, "..", "files", "excel", excelFile.name),
+      function (err) {
+        if (err) {
+          console.log(err);
+        } 
+      }
+    );
+    } catch (error) {
+      next(ApiError.badRequest(error.message));
+    }
+  }
   async create(req, res, next) {
     try {
       const {
@@ -24,9 +45,9 @@ class DeviceController {
         price,
         typeId,
         titleTypeId,
-        subTypeId,
         favourite,
         big,
+        code,
         little,
       } = req.body;
       let { DeviceMoreInf } = req.body;
@@ -61,6 +82,7 @@ class DeviceController {
         titleTypeId,
         subTypeId,
         favourite,
+        code
       });
       await DeviceDescription.create({
         big,
@@ -82,9 +104,6 @@ class DeviceController {
         let fileName = uuid.v4() + ".jpg";
 
         img[key].mv(path.resolve(__dirname, "..", "files", "images", fileName));
-        // gm(path.resolve(__dirname, '..', 'files', 'images', fileName)).size(function (err){
-        //   if (err) console.log(err);
-        // })
         await DeviceImg.create({
           name: fileName,
           deviceId: device.id,
