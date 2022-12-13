@@ -28,7 +28,7 @@ const FavouriteDevice = sequelize.define('favourite_device', {
 
 const Device = sequelize.define('device', {
     id: {type:DataTypes.BIGINT, primaryKey: true, autoIncrement: true},
-    name: {type: DataTypes.TEXT, unique:true, allowNull: false},
+    name: {type: DataTypes.STRING, unique:true, allowNull: false},
     favourite: {type: DataTypes.BOOLEAN, defaultValue: false},  
     price: {type: DataTypes.INTEGER, allowNull: false},
     code: {type: DataTypes.BIGINT, allowNull: false},
